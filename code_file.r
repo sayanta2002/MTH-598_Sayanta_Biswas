@@ -187,7 +187,25 @@ extract_key_results <- function(mega_list) {
 }
 
 
+# Extract key results
+results_df <- extract_key_results(mega_results)
 
+plot(results_df$alpha, results_df$likelihood)
+
+# Display the first few rows of the results
+print(head(results_df))
+
+# Basic summary of the results
+summary(results_df)
+
+# Install plotly if necessary
+# install.packages("plotly")
+
+# Find the row where lambda is maximum
+max_likelihood_row <- results_df[which.max(results_df$likelihood), ]
+
+# Display the row
+max_likelihood_row
 
 
 
