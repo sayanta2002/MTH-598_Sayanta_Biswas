@@ -1,3 +1,9 @@
+library(plotly)
+
+
+
+
+
 inv <- function(lam, alpha, u)
 {
   g <- (-1/lam)*log(u)
@@ -207,6 +213,62 @@ max_likelihood_row <- results_df[which.max(results_df$likelihood), ]
 # Display the row
 max_likelihood_row
 
+
+
+
+
+
+
+
+# Create interactive 3D scatter plot with enhanced aesthetics
+plot_ly(
+  results_df, 
+  x = ~alpha, 
+  y = ~gamma, 
+  z = ~likelihood, 
+  type = "scatter3d", 
+  mode = "markers",
+  
+  # Marker styling: Size and color
+  marker = list(
+    size = 8,                    # Marker size
+    color = ~beta,               # Color based on beta
+    colorscale = "Viridis",      # Color scale for shading
+    showscale = TRUE,            # Show color scale legend
+    opacity = 0.8                # Marker transparency
+  )
+) %>%
+  
+  # Add lighting for 3D shading
+  layout(
+    scene = list(
+      xaxis = list(title = "Alpha"),
+      yaxis = list(title = "Gamma"),
+      zaxis = list(title = "Likelihood"),
+      
+      # Customize lighting
+      lighting = list(
+        ambient = 0.4,           # Ambient lighting
+        diffuse = 0.8,           # Diffuse lighting
+        fresnel = 0.1,           # Fresnel lighting effect
+        specular = 1,            # Specular reflection
+        roughness = 0.5,         # Surface roughness
+        facenormalsepsilon = 0.01 # Precision for normal vectors
+      ),
+      
+      # Add camera perspective for a dynamic 3D view
+      camera = list(
+        eye = list(x = 1.5, y = 1.5, z = 1.5)
+      )
+    ),
+    
+    # Title and layout tweaks
+    title = "Enhanced 3D Plot of Alpha, Beta, and Gamma",
+    autosize = TRUE
+  )
+
+# Optional: Write results to a CSV file
+# write.csv(results_df, "mle_results.csv", row.names = FALSE)
 
 
 
