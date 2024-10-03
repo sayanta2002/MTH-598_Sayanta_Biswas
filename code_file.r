@@ -27,3 +27,62 @@ synthetic_data_generator <- function(lam0, lam1, alpha, n) #uniform(0,1) of size
   df <- as.data.frame(cbind(time, vec1))
   return(df)
 } #output is a dataframe
+
+
+# a vector containing WEP(lamda0, lambda1, alpha)
+
+s <- synthetic_data_generator(lam0 = 0.15, lam1 = 0.04, alpha = 3.0, n = 75)
+plot.ts(s$vec1)
+
+
+
+
+
+
+### checking if the sample mean matches
+
+meaner <- function(vector,lam0, lam1, alpha)
+{
+  ff <- vector
+  lambda <- (lam0 + lam1)
+  mean <- (lambda^(-1/alpha)) * gamma((1/alpha) + 1)
+  samp <- mean(ff)
+  
+  return(c(samp, mean, length(vector)))
+}
+
+meaner(s$vec1, 0.15,0.04,3)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
