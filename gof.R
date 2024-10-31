@@ -1,3 +1,9 @@
+# x = original observed data
+# B = bootstrap sample size
+# lam0, lam1, alpha are the parameters of the WEP we're testing against
+# los = level of sign
+
+
 stnwep22 <- function(x,B, lam0, lam1, alpha, los)  #observed x, B = Bootstrap size, rest are MLE parameters
 {
   samp1 <- list()
@@ -80,7 +86,7 @@ weibull <- function(n,lambda_not,lambda_one,alpha)
 }
 
 v <- weibull(n = 75, lambda_not = 0.98, lambda_one = 0.98, alpha = 2)
-sss <- stnwep22(v, B = 1000, lam0 = 0.994, lam1 = 0.994, alpha = 2.127, los = 0.05)
+sss <- stnwep22(v, B = 1000, lam0 = 0.994, lam1 = 0.994, alpha = 2.127, los = 0.05)   ## the MLE's
 
 
 
